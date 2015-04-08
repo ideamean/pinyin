@@ -18,12 +18,14 @@ func Code(s string) int {
 }
 
 // convert chinese to pinyin
-func Convert(s string) string {
+func Convert(s string, split string) string {
 	pyString := ""
 	var str string
 	var code int
+	var comma string
 
 	for _, rune := range s {
+		pyString += comma
 		str = string(rune)
 		if hzRegexp.MatchString(str) { //chinese
 
@@ -49,6 +51,7 @@ func Convert(s string) string {
 		} else { //other
 			pyString += str
 		}
+		comma = split
 	}
 
 	return pyString
